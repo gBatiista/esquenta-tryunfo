@@ -8,11 +8,25 @@ class App extends React.Component {
     title: '',
     description: '',
     category: 'Trabalho',
+    urgent: false,
     tasks: [],
+    disabledButton: true,
+  };
+
+  validateFields = () => {
+    const titleLength = 4;
+    const descriptionLength = 10;
+    const { title, description } = this.state;
+    if (title.length > titleLength && description.length > descriptionLength) {
+      this.setState({ disabledButton: false });
+    } else {
+      this.setState({ disabledButton: true });
+    }
   };
 
   handleChange = ({ target }) => {
-    this.setState({ [target.name]: target.value });
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState({ [target.name]: value }, this.validateFields);
   };
 
   addTask = (task) => {
@@ -20,6 +34,8 @@ class App extends React.Component {
       tasks: [...prevState.tasks, task],
       title: '',
       description: '',
+      urgent: false,
+      disabledButton: true,
     }));
   };
 
@@ -30,13 +46,15 @@ class App extends React.Component {
   };
 
   render() {
-    const { title, description, tasks, category } = this.state;
+    const { title, description, tasks, category, urgent, disabledButton } = this.state;
     return (
       <div className="App">
         <Form
           title={ title }
           description={ description }
           category={ category }
+          urgent={ urgent }
+          disabledButton={ disabledButton }
           handleChange={ this.handleChange }
           addTask={ this.addTask }
         />
@@ -46,6 +64,7 @@ class App extends React.Component {
             title={ task.title }
             description={ task.description }
             category={ task.category }
+            urgent={ task.urgent }
             removeTask={ () => this.removeTask(index) }
           />))}
       </div>

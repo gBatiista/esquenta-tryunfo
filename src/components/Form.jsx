@@ -3,7 +3,8 @@ import React from 'react';
 
 class Form extends React.Component {
   render() {
-    const { title, description, category, handleChange, addTask } = this.props;
+    const { title,
+      description, category, handleChange, addTask, urgent, disabledButton } = this.props;
     return (
       <form>
         <input
@@ -27,12 +28,18 @@ class Form extends React.Component {
           <option value="Outros">Outros</option>
         </select>
         <label htmlFor="urgent">
-          <input type="checkbox" name="urgent" onChange={ handleChange } />
+          <input
+            type="checkbox"
+            name="urgent"
+            onChange={ handleChange }
+            checked={ urgent }
+          />
           Urgente
         </label>
         <button
           type="button"
-          onClick={ () => addTask({ title, description, category }) }
+          onClick={ () => addTask({ title, description, category, urgent }) }
+          disabled={ disabledButton }
         >
           Adicionar
         </button>
