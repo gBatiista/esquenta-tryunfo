@@ -50,7 +50,7 @@ Neste requisito, você deve criar um formulário com campos de título da tarefa
   6 - tasks (que deve ser iniciado como uma array vazio) <br> 
 
 ## 4. No App, crie a função `handleChange`
-A função handleChange é uma função genérica disparada por eventos nos inputs para alterar os `states` do App.
+A função handleChange é uma função genérica disparada por eventos nos inputs. Essa função alterar o valor de `states` do App de acordo com os valores (value) do input onde o evento ocorreu.
 
 ## 5. No App, crie a função `validateFields`
 A função `validateFields` deverá validar os campos de `title`  e `description` com as seguintes condições:
@@ -80,9 +80,3 @@ O componente `Task` deve ser renderizado no `App` a medida que novas tarefas vã
 
 ## 9. No App, crie a função `removeTask`
 A função removeTask é disparada por eventos de `click` no botão `Feito` do componente `Task`. Essa função deve remover a tarefa da aplicação.
-
-
-
-
-
-
